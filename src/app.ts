@@ -40,6 +40,6 @@ function doPost(e: GoogleAppsScript.Events.DoPost) {
     throw TypeError("key or value is not defined")
   }
 
-  const sheet = new Sheet(APP_URL, SHEET_NAME)
+  const sheet = new Sheet(APP_ID, SHEET_NAME)
   sheet.put(key as string, value as string);
 }
