@@ -1,6 +1,6 @@
 import { Sheet } from "./sheet";
 
-const APP_URL = "";
+const APP_ID = "";
 const SHEET_NAME = ""
 
 /* 

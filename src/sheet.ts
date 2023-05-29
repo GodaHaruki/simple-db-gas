@@ -2,11 +2,11 @@ type __GetResult = [string, number] | undefined
 
 export class Sheet {
   protected sheet: GoogleAppsScript.Spreadsheet.Sheet
-  public appUrl: string
+  public appId: string
 
-  public constructor(appUrl: string, sheetName: string) {
+  public constructor(appId: string, sheetName: string) {
     const temp = SpreadsheetApp
-      .openByUrl(appUrl)
+      .openByUrl(appId)
       .getSheetByName(sheetName);
     if (temp === null) {
       throw TypeError(`sheetName "${sheetName}" is not found`);
