@@ -18,7 +18,7 @@ function doGet(e: GoogleAppsScript.Events.DoGet): GoogleAppsScript.Content.TextO
     throw TypeError("key: undefined is not valid value")
   }
 
-  const sheet = new Sheet(APP_URL, SHEET_NAME)
+  const sheet = new Sheet(APP_ID, SHEET_NAME)
   const res = sheet.get(key as string)
   if (res == undefined) {
     throw TypeError(`key: ${key} is not found`)

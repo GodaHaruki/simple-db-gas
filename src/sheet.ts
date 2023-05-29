@@ -6,7 +6,7 @@ export class Sheet {
 
   public constructor(appId: string, sheetName: string) {
     const temp = SpreadsheetApp
-      .openByUrl(appId)
+      .openById(appId)
       .getSheetByName(sheetName);
     if (temp === null) {
       throw TypeError(`sheetName "${sheetName}" is not found`);
