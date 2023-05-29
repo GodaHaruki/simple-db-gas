@@ -27,27 +27,29 @@ export class Sheet {
   }
 
   public get(key: string): string | undefined {
-    const lastRow = this.sheet.getLastRow()
+    const tempLastRow = this.sheet.getLastRow()
+    const lastRow = tempLastRow == 0 ? 1 : tempLastRow // if sheet is empty, tempLastRow will be 0
     const range = this.sheet.getRange(1, 1, lastRow, 2);
 
     const res: __GetResult = this.__get(key, range.getValues());
 
-    if (res === undefined) {
+    if (res != undefined) {
       return (res as any)[0] as string
     }
 
 
     return undefined
   }
- 
+
   public put(key: string, value: any) {
-    const lastRow = this.sheet.getLastRow()
+    const tempLastRow = this.sheet.getLastRow()
+    const lastRow = tempLastRow == 0 ? 1 : tempLastRow // if sheet is empty, tempLastRow will be 0
     const range = this.sheet.getRange(1, 1, lastRow, 2);
     const indexTemp = this.__get(key, range.getValues());
     if (indexTemp === undefined) {
-      this.sheet.getRange(lastRow, 1, 1, 2).setValues([[key, value]]);
+      this.sheet.getRange(lastRow + 1, 1, 1, 2).setValues([[key, value]]);
     } else {
-      this.sheet.getRange((indexTemp as any)[1], 1, 1, 2).setValues([[key, value]]);
+      this.sheet.getRange(((indexTemp as any)[1] as number) + 1, 1, 1, 2).setValues([[key, value]]);
     }
   }
 }
